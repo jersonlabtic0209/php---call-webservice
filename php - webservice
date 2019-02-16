@@ -1,0 +1,20 @@
+<?php 
+
+$devKey        = ""; 
+$password    = ""; 
+$accountId    = ""; 
+
+// Create the SoapClient instance 
+$url         = "http://localhost/webservice/n_webservice.asmx?WSDL"; 
+$client     = new SoapClient($url, array("trace" => 1, "exception" => 0)); 
+$a = null;
+$b = null;
+$client->f_connect($a,$b); 
+
+// Call wsdl function 
+$result = $client->__soapCall("f_sample_sql",array($a,$b));
+
+// Echo the result 
+echo "<pre>".print_r($result, true)."</pre>"; 
+
+?>
