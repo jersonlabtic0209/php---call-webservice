@@ -1,4 +1,3 @@
-<?php 
 
 $devKey        = ""; 
 $password    = ""; 
@@ -8,13 +7,25 @@ $accountId    = "";
 $url         = "http://localhost/webservice/n_webservice.asmx?WSDL"; 
 $client     = new SoapClient($url, array("trace" => 1, "exception" => 0)); 
 $a = null;
-$b = null;
-$client->f_connect($a,$b); 
+$b = null; 
+$arrayName = array('a_s_data' => '' ,
+                    'a_s_error' => '');
+                    
+// $client->f_sample_sql(new SoapParam($a, "a_s_data"),
+//                      new SoapParam($b, "a_s_error"));
+
 
 // Call wsdl function 
-$result = $client->__soapCall("f_sample_sql",array($a,$b));
+$result = $client->__soapCall("f_sample_sql",$arrayName);
+foreach ($result as $v) {
+     $getd=explode(",",$v);
+    if (empty($getd[0])) {
+        continue;
+    }
+    echo "Current value of $a:" .$v. "\n";
+}
+
 
 // Echo the result 
 echo "<pre>".print_r($result, true)."</pre>"; 
-
 ?>
