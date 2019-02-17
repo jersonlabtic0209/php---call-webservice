@@ -22,7 +22,7 @@ $result = $client->__soapCall("f_sample_sql", array(
 
 
 foreach ($result as $v) {
-     $getd=explode(",",$v);
+     $getd=explode("0",$v);
     if (empty($getd[0])) {
         continue;
     }
